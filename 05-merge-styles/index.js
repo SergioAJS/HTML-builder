@@ -9,6 +9,7 @@ const path = require('path');
 
     for (const bundleFile of bundleFiles) {
       let extBundle = path.extname(bundleFile);
+
       if (extBundle === '.css') {
         await fs.promises.rm(path.join(outputPath, 'bundle.css'));
       }
@@ -16,11 +17,13 @@ const path = require('path');
 
     for (const file of sourceFiles) {
       let ext = path.extname(file);
+
       if (ext === '.css') {
         let reader = fs.createReadStream(path.join(sourcePath, file));
         await fs.promises.appendFile(path.join(outputPath, 'bundle.css'), reader);
       }
     }
+
   } catch (err) {
     console.log(err);
   }

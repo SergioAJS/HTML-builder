@@ -20,6 +20,7 @@ const path = require('path');
         await copyDir((path.join(sourcePath, file.name, '/')), (path.join(outputPath, file.name, '/')));
       }
     }
+
   } catch (err) {
     console.log(err);
   }

@@ -17,8 +17,8 @@ const path = require('path');
 
       if (ext === '.html') {
         const template = await fs.promises.readFile(path.join(sourcePath, html), 'utf-8');
-        const componentFiles = await fs.promises.readdir(path.join(sourcePath, 'components'));
         let index = template;
+        const componentFiles = await fs.promises.readdir(path.join(sourcePath, 'components'));
 
         for (const component of componentFiles) {
           let reader = await fs.promises.readFile(path.join(sourcePath, 'components', '/', component));
@@ -28,9 +28,12 @@ const path = require('path');
 
         await fs.promises.appendFile(path.join(outputPath, 'index.html'), index);
       }
+
     }
+
     await bundleCSS();
     await copyAssets();
+
   } catch (err) {
     console.log(err);
   }
@@ -43,6 +46,7 @@ async function bundleCSS(sourcePath = path.join(__dirname, 'styles', '/'), outpu
 
     for (const bundleFile of bundleFiles) {
       let extBundle = path.extname(bundleFile);
+
       if (extBundle === '.css') {
         await fs.promises.rm(path.join(outputPath, 'style.css'));
       }
@@ -50,11 +54,13 @@ async function bundleCSS(sourcePath = path.join(__dirname, 'styles', '/'), outpu
 
     for (const file of sourceFiles) {
       let ext = path.extname(file);
+
       if (ext === '.css') {
         let reader = fs.createReadStream(path.join(sourcePath, file));
         await fs.promises.appendFile(path.join(outputPath, 'style.css'), reader);
       }
     }
+
   } catch (err) {
     console.log(err);
   }
@@ -79,6 +85,7 @@ async function copyAssets(sourcePath = path.join(__dirname, 'assets', '/'), outp
         await copyAssets((path.join(sourcePath, file.name, '/')), (path.join(outputPath, file.name, '/')));
       }
     }
+
   } catch (err) {
     console.log(err);
   }
