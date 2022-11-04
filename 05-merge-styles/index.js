@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-
-(async function bundle(sourcePath = path.join(__dirname, 'styles', '/'), outputPath = path.join(__dirname, 'project-dist', '/')) {
+(async function bundle(sourcePath, outputPath) {
   try {
     const sourceFiles = await fs.promises.readdir(sourcePath);
     const bundleFiles = await fs.promises.readdir(outputPath);
@@ -28,4 +27,4 @@ const path = require('path');
   } catch (err) {
     console.log(err);
   }
-})();
+})(path.join(__dirname, 'styles', '/'), path.join(__dirname, 'project-dist', '/'));

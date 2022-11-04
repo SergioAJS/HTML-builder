@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-(async function bundleHTML(sourcePath = path.join(__dirname, '/'), outputPath = path.join(__dirname, 'project-dist', '/')) {
+(async function bundleHTML(sourcePath, outputPath) {
   try {
     await fs.promises.mkdir(outputPath, {recursive: true});
     const outputDir = await fs.promises.readdir(outputPath);
@@ -37,7 +37,7 @@ const path = require('path');
   } catch (err) {
     console.log(err);
   }
-})();
+})(path.join(__dirname, '/'), path.join(__dirname, 'project-dist', '/'));
 
 async function bundleCSS(sourcePath = path.join(__dirname, 'styles', '/'), outputPath = path.join(__dirname, 'project-dist', '/')) {
   try {

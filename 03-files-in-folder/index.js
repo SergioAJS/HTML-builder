@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-(async function readDir(dirPath = path.join(__dirname, 'secret-folder', '/')) {
+(async function readDir(dirPath) {
   try {
     const files = await fs.promises.readdir(dirPath, {withFileTypes: true});
 
@@ -19,4 +19,4 @@ const path = require('path');
   } catch (err) {
     console.log(err);
   }
-})();
+})(path.join(__dirname, 'secret-folder', '/'));

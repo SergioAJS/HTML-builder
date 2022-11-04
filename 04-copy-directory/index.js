@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-(async function copyDir(sourcePath = path.join(__dirname, 'files', '/'), outputPath = path.join(__dirname, 'copy-files', '/')) {
+(async function copyDir(sourcePath, outputPath) {
   try {
     const sourceFiles = await fs.promises.readdir(sourcePath, {withFileTypes: true});
 
@@ -24,4 +24,4 @@ const path = require('path');
   } catch (err) {
     console.log(err);
   }
-})();
+})(path.join(__dirname, 'files', '/'), path.join(__dirname, 'copy-files', '/'));
