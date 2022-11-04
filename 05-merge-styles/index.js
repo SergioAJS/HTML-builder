@@ -21,6 +21,7 @@ const path = require('path');
       if (ext === '.css') {
         let reader = fs.createReadStream(path.join(sourcePath, file));
         await fs.promises.appendFile(path.join(outputPath, 'bundle.css'), reader);
+        await fs.promises.appendFile(path.join(outputPath, 'bundle.css'), '\n');
       }
     }
 

@@ -8,16 +8,11 @@ const path = require('path');
     for (const file of files) {
       if (file.isFile()) {
         let fileStat = await fs.promises.stat(dirPath + (file.name).toString());
+        let name = (file.name).slice(0, (file.name).indexOf('.'));
+        let ext = (path.extname(file.name)).replace('.', '');
+        let size = fileStat.size;
 
-        if ((file.name).indexOf('.') !== 0) {
-          let name = (file.name).slice(0, (file.name).indexOf('.'));
-          let ext = (path.extname(file.name)).replace('.', '');
-          let size = (fileStat.size / 1024).toFixed(2);
-          console.log(`name: ${name} - extension: ${ext} - size: ${size} KB`);
-        }
-
-      } else {
-        readDir(path.join(dirPath, file.name, '/'));
+        console.log(`${name} - ${ext} - ${size} B`);
       }
     }
 

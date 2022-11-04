@@ -58,6 +58,7 @@ async function bundleCSS(sourcePath = path.join(__dirname, 'styles', '/'), outpu
       if (ext === '.css') {
         let reader = fs.createReadStream(path.join(sourcePath, file));
         await fs.promises.appendFile(path.join(outputPath, 'style.css'), reader);
+        await fs.promises.appendFile(path.join(outputPath, 'style.css'), '\n');
       }
     }
 
