@@ -21,7 +21,7 @@ const path = require('path');
         const componentFiles = await fs.promises.readdir(path.join(sourcePath, 'components'));
 
         for (const component of componentFiles) {
-          let reader = await fs.promises.readFile(path.join(sourcePath, 'components', '/', component));
+          let reader = await fs.promises.readFile(path.join(sourcePath, 'components', '/', component), 'utf-8');
           let name = (component).slice(0, (component).indexOf('.'));
           index = index.replace(`{{${name}}}`, reader);
         }
